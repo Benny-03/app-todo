@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { Provider } from './state';
 import Home from './Home';
 
 const root = createRoot(document.getElementById('root'));
@@ -12,4 +13,8 @@ const router = createBrowserRouter([
     }
 ]);
 
-root.render( <RouterProvider router={router} />);
+root.render(
+    <Provider> 
+       <RouterProvider router={router} />
+    </Provider>
+);
