@@ -1,0 +1,29 @@
+/* GENERAL */
+
+body {
+    font-family: 'Inter';
+}
+
+*{
+    --red: #FF6767;
+    --blue: #3ABEFF;
+    --grey: #A1A3AB;
+    --dark-white: #F8F8F8;
+    margin: 0;
+    padding: 0;
+}
+
+/* HOME-PAGE */
+
+.header {
+    background-color: var(--dark-white);
+    border-bottom: solid 2px var(--red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.site-content {
+    margin-top: 20px;
+}
