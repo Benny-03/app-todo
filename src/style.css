@@ -13,6 +13,45 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background-color: var(--red);
+    width: 200px;
+    position: relative;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 8px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;    
+}
+
+.sidebar-content .page {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.site-content .page:hover {
+    background-color: white;
+    color: var(--red);
+}
+
+
 /* HOME-PAGE */
 
 .header {
@@ -21,9 +60,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0px;
+    height: 70px;
 }
 
 .site-content {
-    margin-top: 20px;
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    gap: 100px;
 }

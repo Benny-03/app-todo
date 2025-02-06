@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import { InsertTodo } from "./InsertTodo";
-import { TodoList } from "./TodoList";
+import Sidebar from "../components/Sidebar";
+import { InsertTodo } from "../components/InsertTodo";
+import { TodoList } from "../components/TodoList";
 
 const Home = () => {
     return (
@@ -10,7 +10,7 @@ const Home = () => {
                 <h2><span style={{color: "#FF6767"}}>TO</span>-DO</h2>
                 
             </div>
-            <div className="site-content" style={{display: "flex", gap: "20px"}}>
+            <div className="site-content">
                 <Sidebar />
                 <main className="main-content">
                     <TodoList />

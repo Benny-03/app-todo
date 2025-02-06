@@ -2,7 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Provider } from './state';
-import Home from './Home';
+import Home from './pages/Home';
+import TaskCategories from './pages/TaskCategories';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
     {
         path: "/",
         Component: Home
+    },
+    {
+        path: "/task-categories",
+        Component: TaskCategories
     }
 ]);
 
