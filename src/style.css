@@ -123,23 +123,24 @@ input {
     height: 100%;
 }
 
-.todo-list {
+.todo-list, .categories-list {
     border: solid 1px var(--grey);
     border-radius: 8px;
     padding: 20px 40px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.todo-list h3 {
+.todo-list h3, .categories-list h3 {
     border-bottom: solid 2px var(--red);
+    width: fit-content;
 }
 
-.todo-list ul{
+.todo-list ul, .categories-list ul {
     list-style: none;
     margin-top: 20px;
 }
 
-.todo-list li {
+.todo-list li, .categories-list li {
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -208,4 +209,13 @@ input {
 
 .edit-todo .false {
     display: none;
+}
+
+/* CATERIES-PAGE */
+
+.color-cat {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Provider } from './state';
-import Home from './pages/Home';
-import TaskCategories from './pages/TaskCategories';
+import Home from './Home';
+import TaskCategories from './TaskCategories';
 
 const root = createRoot(document.getElementById('root'));
 

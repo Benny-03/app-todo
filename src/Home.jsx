@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
-import { InsertTodo } from "../components/InsertTodo";
-import { TodoList } from "../components/TodoList";
-import { useStore } from "../state";
+import Sidebar from "./components/Sidebar";
+import { InsertTodo } from "./components/InsertTodo";
+import { TodoList } from "./components/TodoList";
+import { useStore } from "./state";
 
 const Home = () => {
     const { tasks, taskNotCompleted } = useStore()

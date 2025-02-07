@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useStore } from "../state";
-import { RemoveTodo } from "../components/RemoveTodo";
-import { EditTodo } from "../components/EditTodo"
+import { RemoveTodo } from "./RemoveTodo";
+import { EditTodo } from "./EditTodo"
 
 export const TodoList = () => {
     const { tasks, NotCompleted, taskNotCompleted } = useStore();
