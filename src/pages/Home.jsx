@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../components/Sidebar";
 import { InsertTodo } from "../components/InsertTodo";
 import { TodoList } from "../components/TodoList";
+import { useStore } from "../state";
 
 const Home = () => {
+    const { tasks, taskNotCompleted } = useStore()
+
     return (
         <div className="home-page">
             <div className="header">
@@ -14,6 +17,7 @@ const Home = () => {
                 <main className="main-content">
                     <TodoList />
                     <InsertTodo />
+                    {taskNotCompleted(tasks)}
                 </main>
             </div>
         </div>

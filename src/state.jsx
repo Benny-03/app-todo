@@ -16,6 +16,8 @@ const initialTasks =  [{
 
 export const StoreContext = createContext({ 
     tasks: initialTasks,
+    NotCompleted: 0,
+    taskNotCompleted: (task) => {},
     addTask: (text) => {},
     deleteTask: (id) => {},
     editTask: (id, text) => {},
@@ -24,9 +26,21 @@ export const StoreContext = createContext({
 export const Provider = ({ children }) => {
     // const [state, dispatch] = useReducer(reducer, initialState);
     const [tasks, setTasks] = useState(initialTasks);
+    const [NotCompleted, setNotCompleted] = useState(tasks.length)
+
     return (
         <StoreContext.Provider value={{
             tasks,
+            NotCompleted,
+            taskNotCompleted (tasks) {
+                let notComp = 0;
+                tasks.forEach((task) => {
+                    if(task.completed == false){
+                        notComp += 1;
+                    }
+                })
+                setNotCompleted(notComp)
+            },
             addTask (text) {
                 setTasks((prevTasks) => [...prevTasks, {
                     id: Math.random().toString(36).slice(2),
@@ -42,6 +56,14 @@ export const Provider = ({ children }) => {
                     }
                 })
                 setTasks(newTask);
+            },
+            editTask (id, text) {
+                const newTask = [];
+                tasks.forEach((task) => {
+                    if(task.id === id) { task.title = text } 
+                    newTask.push(task);
+                })
+                setTasks(newTask)
             }
         }}>
             {children}

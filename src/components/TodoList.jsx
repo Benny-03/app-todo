@@ -4,19 +4,18 @@ import { RemoveTodo } from "../components/RemoveTodo";
 import { EditTodo } from "../components/EditTodo"
 
 export const TodoList = () => {
-    const { tasks } = useStore();
-    const [NotCompleted, setNotCompleted] = useState(tasks.length)
+    const { tasks, NotCompleted, taskNotCompleted } = useStore();
 
     const checkboxChange = (taskId) => {
-        let index = 0;
         tasks.forEach((task) => {
             if (task.id === taskId) {
                 task.completed = !task.completed;
             }
-            if(!task.completed) { index++ };
         });
-        setNotCompleted(index)
+        taskNotCompleted(tasks)
     };
+
+    
 
     return (
         <div className="todo-list">
@@ -38,8 +37,11 @@ export const TodoList = () => {
                                 />
                             {task.title}
                         </div>
-                        <EditTodo />
-                        <RemoveTodo id={task.id} />
+                        <div className="buttons-edit">
+                            <EditTodo id={task.id}/>
+                            <RemoveTodo id={task.id} />
+                            { taskNotCompleted(tasks) }
+                        </div>
                     </li>
                 ))}
             </ul>

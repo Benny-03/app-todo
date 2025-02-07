@@ -45,7 +45,7 @@ button p:hover {
 
 button img {
     padding: 4px 6px;
-    width: 10px;
+    width: 12px;
 }
 
 input {
@@ -85,6 +85,11 @@ input {
 }
 
 .site-content .page:hover {
+    background-color: white;
+    color: var(--red);
+}
+
+.site-content .page.active {
     background-color: white;
     color: var(--red);
 }
@@ -173,6 +178,34 @@ input {
     justify-content: center;
 } 
 
-.remove-todo button:hover {
+.remove-todo button:hover, .edit-todo button:hover {
     background-color: var(--red);
+}
+
+.edit-todo button img {
+    width: 13px;
+    padding: 5px 6px;
+}
+
+.buttons-edit {
+    display: flex;
+}
+
+.edit-todo {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.edit-todo input {
+    height: 10px;
+}
+
+.edit-todo .true {
+    display: flex;
+}
+
+.edit-todo .false {
+    display: none;
 }
