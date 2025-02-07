@@ -33,6 +33,15 @@ export const Provider = ({ children }) => {
                     title: text,
                     completed: false,
                 }]);
+            }, 
+            deleteTask (id) {
+                const newTask = []
+                tasks.forEach((task) => {
+                    if(task.id !== id){
+                        newTask.push(task);
+                    }
+                })
+                setTasks(newTask);
             }
         }}>
             {children}

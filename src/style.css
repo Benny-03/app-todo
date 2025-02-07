@@ -17,6 +17,43 @@ a {
     text-decoration: none;
 }
 
+button {
+    margin-left: 15px;
+    border-radius: 50%;
+    background-color: var(--red);
+    border: solid 2px var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: transparent;
+}
+
+button p {
+    font-size: 20px;
+    padding: 4px 10px;
+    font-weight: 100;
+    color: white;
+}
+
+button p:hover {
+    color: var(--red);
+}
+
+button img {
+    padding: 4px 6px;
+    width: 10px;
+}
+
+input {
+    padding: 7px;
+    border-radius: 5px;
+    border: solid 2px var(--red);
+}
+
 /* SIDEBAR */
 
 .sidebar {
@@ -28,6 +65,7 @@ a {
     height: 260px;
     display: flex;
     justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .sidebar-content {
@@ -42,7 +80,7 @@ a {
     align-items: center;
     gap: 5px;
     color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
 }
 
@@ -61,6 +99,7 @@ a {
     justify-content: center;
     align-items: center;
     height: 70px;
+    box-shadow: 0px 8px 9px var(--grey);
 }
 
 .site-content {
@@ -70,5 +109,70 @@ a {
     justify-content: flex-start;
     align-items: flex-start;
     position: relative;
-    gap: 100px;
+    gap: 80px;
+    padding-right: 3%;
+}
+
+.main-content {
+    width: 100%;
+    height: 100%;
+}
+
+.todo-list {
+    border: solid 1px var(--grey);
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.todo-list h3 {
+    border-bottom: solid 2px var(--red);
+}
+
+.todo-list ul{
+    list-style: none;
+    margin-top: 20px;
+}
+
+.todo-list li {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox{
+    margin-right: 20px;
+}
+
+.todo-list .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.todo-list .title p {
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.box-edit {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.insert-todo {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+} 
+
+.remove-todo button:hover {
+    background-color: var(--red);
 }
