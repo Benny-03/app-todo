@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../state";
 import { RemoveTodo } from "./RemoveTodo";
 import { EditTodo } from "./EditTodo"
 
 export const TodoList = () => {
-    const { tasks, NotCompleted, taskNotCompleted } = useStore();
+    const { tasks, taskNotCompleted, dispatchNotCompleted } = useStore();
 
     const checkboxChange = (taskId) => {
         tasks.forEach((task) => {
@@ -12,16 +12,18 @@ export const TodoList = () => {
                 task.completed = !task.completed;
             }
         });
-        taskNotCompleted(tasks)
+        dispatchNotCompleted({type: "completed", tasks: tasks})
     };
 
-    
+    useEffect(() => {
+        dispatchNotCompleted({ type: "completed", tasks: tasks });
+    }, [tasks, dispatchNotCompleted]); 
 
     return (
         <div className="todo-list">
             <div className="title">
                 <h3>My tasks</h3>
-                <p>not completed: {NotCompleted}</p>
+                <p>not completed: {taskNotCompleted}</p>
             </div>
             <ul>
                 {tasks.map((task) => (
@@ -40,7 +42,6 @@ export const TodoList = () => {
                         <div className="buttons-edit">
                             <EditTodo id={task.id}/>
                             <RemoveTodo id={task.id} />
-                            { taskNotCompleted(tasks) }
                         </div>
                     </li>
                 ))}

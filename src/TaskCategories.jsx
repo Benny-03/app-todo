@@ -1,5 +1,4 @@
 import React from "react";
-import { useStore } from "./state";
 import Sidebar from "./components/Sidebar";
 import { CategoriesList } from "./components/CategoriesList";
 import { AddCategories } from "./components/AddCategories";

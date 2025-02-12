@@ -4,7 +4,7 @@ import { useStore } from "../state";
 export const EditTodo = (props) => {
     const [task, setTask] = useState()
     const [isVisible, setIsVisible] = useState()
-    const { editTask, tasks } = useStore();
+    const { dispatch } = useStore();
 
     return (
         <div className="edit-todo"> 
@@ -17,7 +17,7 @@ export const EditTodo = (props) => {
                     onChange={(e) => setTask(e.target.value)} 
                     onKeyDown={(e) => {
                         if (e.key === "Enter" && task.length > 0) {
-                            editTask(props.id, task);
+                            dispatch({type: "editTask", text: task, id: props.id});
                             setTask("");
                         }
                     }} 

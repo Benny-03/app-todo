@@ -3,7 +3,7 @@ import { useStore } from "../state";
 
 export const InsertTodo = () => {
     const [task, setTask] = useState("");
-    const { addTask } = useStore();
+    const { dispatch } = useStore();
 
     return (
         <div className="insert-todo">
@@ -14,7 +14,7 @@ export const InsertTodo = () => {
                 onChange={(e) => setTask(e.target.value)} 
                 onKeyDown={(e) => {
                     if (e.key === "Enter" && task.length > 0) {
-                        addTask(task);
+                        dispatch({type: "addTask", text: task});
                         setTask("");
                     }
                 }} />
@@ -22,7 +22,7 @@ export const InsertTodo = () => {
                 type="button" 
                 onClick={() => {
                     if(task.length > 0) { 
-                        addTask(task);
+                        dispatch({type: "addTask"});
                         setTask("");
                     }
                 }} > <p>+</p> </button>

@@ -2,13 +2,13 @@ import React from "react";
 import { useStore } from "../state";
 
 export const CategoriesList = () => {
-    const { categories } = useStore()
+    const { category } = useStore()
 
     return (
         <div className="categories-list">
             <h3>My categories</h3>
             <ul>
-                {categories.map((cat) => (
+                {category.map((cat) => (
                     <li key={cat.id}>
                         <div style={{display: "flex"}}>
                             <div className="color-cat" style={{backgroundColor: cat.color}}></div>
@@ -16,8 +16,7 @@ export const CategoriesList = () => {
                         </div>
                         <div className="buttons-edit">
                             {/* <EditTodo id={cat.id}/>
-                            <RemoveTodo id={cat.id} />
-                            { taskNotCompleted(tasks) } */}
+                            <RemoveTodo id={cat.id} />*/}
                         </div>
                     </li>
                 ))}

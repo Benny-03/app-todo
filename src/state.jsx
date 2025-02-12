@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 const initialTasks =  [{
     id: Math.random().toString(36).slice(2),
@@ -24,68 +24,86 @@ const initialCategories =  [{
     color: "#3ABEFF",
 }];
 
+const reducerTask = (tasks, action) => {
+    switch (action.type){
+        case "addTask": 
+            return [...tasks, {
+                id: Math.random().toString(36).slice(2),
+                title: action.text,
+                completed: false,
+            }];
+        case "deleteTask":
+            const newTask = []
+            tasks.forEach((task) => {
+                if(task.id !== action.id){
+                    newTask.push(task);
+                }
+            })
+            return newTask;
+        case "editTask":
+            const editTask = [];
+            tasks.forEach((task) => {
+                if(task.id === action.id) { task.title = action.text } 
+                editTask.push(task);
+            })
+            return editTask;
+        default:
+            return tasks;
+    }
+
+}
+
+const reducerCat = (cat, action) => {
+    switch(action.type) {
+        case "addCat":
+            return [...cat, {
+                id: Math.random().toString(36).slice(2),
+                title: action.text,
+                color: action.color
+            }];
+        default:
+            return cat;
+    }
+
+}
+
+const reducerNotCompleted = (taskNotCompleted ,action) => {
+    switch(action.type){
+        case "completed":
+            let notComp = 0;
+            action.tasks.forEach((task) => {
+                if(task.completed == false){
+                    notComp += 1;
+                }
+            })
+            return notComp;
+        default:
+            return action.tasks.lenght;
+    }
+}
+
 export const StoreContext = createContext({ 
-    tasks: initialTasks,
-    categories: initialCategories,
-    NotCompleted: 0,
-    taskNotCompleted: (task) => {},
-    addTask: (text) => {},
-    addCat: (text, color) => {},
-    deleteTask: (id) => {},
-    editTask: (id, text) => {},
+    tasks: initialTasks, 
+    dispatch: () => {},
+    category: initialCategories,
+    dispatchCat: () => {},
+    taskNotCompleted: 0,
+    dispatchNotCompleted: () => {}
 });
 
 export const Provider = ({ children }) => {
-    // const [state, dispatch] = useReducer(reducer, initialState);
-    const [tasks, setTasks] = useState(initialTasks);
-    const [categories, setCategories] = useState(initialCategories)
-    const [NotCompleted, setNotCompleted] = useState(tasks.length)
+    const [tasks, dispatch] = useReducer(reducerTask, initialTasks);
+    const [category, dispatchCat] = useReducer(reducerCat, initialCategories);
+    const [taskNotCompleted, dispatchNotCompleted] = useReducer(reducerNotCompleted, tasks.lenght)
 
     return (
         <StoreContext.Provider value={{
-            tasks,
-            categories,
-            NotCompleted,
-            taskNotCompleted (tasks) {
-                let notComp = 0;
-                tasks.forEach((task) => {
-                    if(task.completed == false){
-                        notComp += 1;
-                    }
-                })
-                setNotCompleted(notComp)
-            },
-            addTask (text) {
-                setTasks((prevTasks) => [...prevTasks, {
-                    id: Math.random().toString(36).slice(2),
-                    title: text,
-                    completed: false,
-                }]);
-            }, 
-            addCat (text, color) {
-                setCategories((prevCat) => [...prevCat, {
-                    id: Math.random().toString(36).slice(2),
-                    title: text,
-                    color: color
-                }]);
-            },
-            deleteTask (id) {
-                const newTask = []
-                tasks.forEach((task) => {
-                    if(task.id !== id){
-                        newTask.push(task);
-                    }
-                })
-                setTasks(newTask);
-            },
-            editTask (id, text) {
-                const newTask = [];
-                tasks.forEach((task) => {
-                    if(task.id === id) { task.title = text } 
-                    newTask.push(task);
-                })
-                setTasks(newTask)
-            }
+            tasks, 
+            dispatch,
+            category,
+            dispatchCat,
+            taskNotCompleted,
+            dispatchNotCompleted
         }}>
             {children}
         </StoreContext.Provider>

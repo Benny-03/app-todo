@@ -3,7 +3,7 @@ import { useStore } from "../state";
 
 export const AddCategories = () => {
     const [cat, setCat] = useState("");
-    const { addCat } = useStore();
+    const { dispatchCat } = useStore();
 
     return (
         <div className="insert-todo">
@@ -14,7 +14,7 @@ export const AddCategories = () => {
                 onChange={(e) => setCat(e.target.value)} 
                 onKeyDown={(e) => {
                     if (e.key === "Enter" && cat.length > 0) {
-                        addCat(cat, "#FF6767");
+                        dispatchCat({type: "addCat", text: cat, color: "#FF6767"});
                         setCat("");
                     }
                 }} />
@@ -22,7 +22,7 @@ export const AddCategories = () => {
                 type="button" 
                 onClick={() => {
                     if(cat.length > 0) { 
-                        addCat(cat, "#FF6767");
+                        dispatchCat({type: "addCat", text: cat, color: "#FF6767"});
                         setCat("");
                     }
                 }} > <p>+</p> </button>
