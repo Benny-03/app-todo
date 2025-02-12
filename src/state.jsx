@@ -2,26 +2,33 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const initialTasks =  [{
     id: Math.random().toString(36).slice(2),
-    title: "Task 1",
+    title: "Wash the dishes",
     completed: false,
+    category: "Home"
 }, {
     id: Math.random().toString(36).slice(2),
-    title: "Task 2",
+    title: "Study",
     completed: false,
+    category: "University"
 }, {
     id: Math.random().toString(36).slice(2),
-    title: "Task 3",
+    title: "Take the dog out",
     completed: false,
+    category: "Dog"
 }];
 
 const initialCategories =  [{
     id: Math.random().toString(36).slice(2),
-    title: "Cat 1",
+    title: "Home",
     color: "#FF6767",
 }, {
     id: Math.random().toString(36).slice(2),
-    title: "Cat 2",
+    title: "University",
     color: "#3ABEFF",
+}, {
+    id: Math.random().toString(36).slice(2),
+    title: "Dog",
+    color: "green",
 }];
 
 const reducerTask = (tasks, action) => {
@@ -31,6 +38,7 @@ const reducerTask = (tasks, action) => {
                 id: Math.random().toString(36).slice(2),
                 title: action.text,
                 completed: false,
+                category: action.category
             }];
         case "deleteTask":
             const newTask = []
@@ -43,14 +51,16 @@ const reducerTask = (tasks, action) => {
         case "editTask":
             const editTask = [];
             tasks.forEach((task) => {
-                if(task.id === action.id) { task.title = action.text } 
+                if(task.id === action.id) { 
+                    task.title = action.text 
+                    task.category = action.category
+                } 
                 editTask.push(task);
             })
             return editTask;
         default:
             return tasks;
     }
-
 }
 
 const reducerCat = (cat, action) => {
@@ -61,10 +71,27 @@ const reducerCat = (cat, action) => {
                 title: action.text,
                 color: action.color
             }];
+        case "editCat":
+            const editCat = [];
+            cat.forEach((c) => {
+                if(c.id === action.id) { 
+                    c.title = action.text
+                    c.color = action.color
+                } 
+                editCat.push(c);
+            })
+            return editCat;
+        case "deleteCat":
+            const newCat = []
+            cat.forEach((c) => {
+                if(c.id !== action.id){
+                    newCat.push(c);
+                }
+            })
+            return newCat;
         default:
             return cat;
     }
-
 }
 
 const reducerNotCompleted = (taskNotCompleted ,action) => {

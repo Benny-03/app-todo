@@ -4,7 +4,7 @@ import { RemoveTodo } from "./RemoveTodo";
 import { EditTodo } from "./EditTodo"
 
 export const TodoList = () => {
-    const { tasks, taskNotCompleted, dispatchNotCompleted } = useStore();
+    const { tasks, taskNotCompleted, dispatchNotCompleted, category } = useStore();
 
     const checkboxChange = (taskId) => {
         tasks.forEach((task) => {
@@ -28,7 +28,7 @@ export const TodoList = () => {
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                        <div>
+                        <div style={{display: "flex"}}>
                             <input 
                                 type="checkbox" 
                                 id={task.id} 
@@ -36,11 +36,14 @@ export const TodoList = () => {
                                 className="checkbox"
                                 checked={task.completed}
                                 onChange={() => checkboxChange(task.id)}
-                                />
+                            />
                             {task.title}
+                            {task.category && category &&
+                                <div className="color-cat" style={{backgroundColor: category.map((c) => (c.title === task.category) ? c.color : "")}}>{task.category}</div>
+                            }
                         </div>
                         <div className="buttons-edit">
-                            <EditTodo id={task.id}/>
+                            <EditTodo id={task.id} cat={task.category} text={task.title}/>
                             <RemoveTodo id={task.id} />
                         </div>
                     </li>

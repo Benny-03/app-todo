@@ -48,10 +48,19 @@ button img {
     width: 12px;
 }
 
-input {
+input, select {
     padding: 7px;
     border-radius: 5px;
     border: solid 2px var(--red);
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+option:hover {
+    background-color: none;
+    cursor: pointer;
 }
 
 /* SIDEBAR */
@@ -141,10 +150,9 @@ input {
 }
 
 .todo-list li, .categories-list li {
-    padding-bottom: 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .checkbox{
@@ -160,6 +168,16 @@ input {
 .todo-list .title p {
     margin-left: 20px;
     font-size: 13px;
+}
+
+.todo-list .color-cat {
+    margin-left: 10px;
+    width: auto;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    padding: 2px 3px;
+    border-radius: 6px;
 }
 
 .box-edit {
@@ -183,6 +201,12 @@ input {
     background-color: var(--red);
 }
 
+.remove-todo button img{
+    padding: 4px 6px;
+    width: 12px;
+    height: 14px;
+}
+
 .edit-todo button img {
     width: 13px;
     padding: 5px 6px;
@@ -190,6 +214,8 @@ input {
 
 .buttons-edit {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .edit-todo {
@@ -200,7 +226,7 @@ input {
 }
 
 .edit-todo input {
-    height: 10px;
+    height: 9px;
 }
 
 .edit-todo .true {
@@ -211,11 +237,58 @@ input {
     display: none;
 }
 
-/* CATERIES-PAGE */
+.edit-todo .select-cat {
+    padding: 3px 4px;
+    margin: 0;
+}
+
+.select-cat {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+/* CATEGORIES-PAGE */
 
 .color-cat {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.input-textCat{
+    margin-right: 10px;
+}
+
+.chooseColor {
+    border: solid 2px var(--red);
+    padding: 4px;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+    block-size: 33px;
+    width: 33px;
+    margin-left: 10px;
+}
+
+.edit-todo .chooseColor {
+    block-size: 27px;
+    width: 27px;
+    padding: 3px;
+    margin-left: 0px;
+}
+
+.btn-editCat {
+    margin-left: 0px;
+}
+
+.btn-editCat p {
+    font-size: 15px;
+    padding: 3px 8px;
+    font-weight: 600;
+}
+
+.btn-editCat:hover{
+    background-color: transparent !important;
 }

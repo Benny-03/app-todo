@@ -1,5 +1,7 @@
 import React from "react";
 import { useStore } from "../state";
+import { EditCat } from "./EditCat";
+import { RemoveCat } from "./RemoveCat";
 
 export const CategoriesList = () => {
     const { category } = useStore()
@@ -15,8 +17,8 @@ export const CategoriesList = () => {
                             {cat.title}
                         </div>
                         <div className="buttons-edit">
-                            {/* <EditTodo id={cat.id}/>
-                            <RemoveTodo id={cat.id} />*/}
+                            <EditCat id={cat.id} color={cat.color}/>
+                            <RemoveCat id={cat.id} />
                         </div>
                     </li>
                 ))}
