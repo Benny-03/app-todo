@@ -118,10 +118,12 @@ export const StoreContext = createContext({
     dispatchNotCompleted: () => {}
 });
 
+const combineDispatchers = (...dispatchers) => (action) => dispatchers.forEach((dispatch) => dispatch())
+
 export const Provider = ({ children }) => {
     const [tasks, dispatch] = useReducer(reducerTask, initialTasks);
     const [category, dispatchCat] = useReducer(reducerCat, initialCategories);
-    const [taskNotCompleted, dispatchNotCompleted] = useReducer(reducerNotCompleted, tasks.lenght)
+    const [taskNotCompleted, dispatchNotCompleted] = useReducer(reducerNotCompleted, tasks.length)
 
     return (
         <StoreContext.Provider value={{
