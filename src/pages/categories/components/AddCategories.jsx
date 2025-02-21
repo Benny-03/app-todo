@@ -7,7 +7,7 @@ export const AddCategories = () => {
     const { dispatchCat } = useStore();
 
     return (
-        <div className="insert-todo">
+        <div className="box-insert-todo">
             <input
                 type="text"
                 placeholder="Add a new category..."
@@ -21,22 +21,25 @@ export const AddCategories = () => {
                         setColor("#FF6767")
                     }
                 }} />
-            <span>choose the color</span>
-            <input 
-                type="color" 
-                value={color}
-                className="chooseColor"
-                onChange={(e) => setColor(e.target.value)} />
+            <div className="insert-todo">
+                <span>choose the color</span>
+                <input 
+                    type="color" 
+                    value={color}
+                    className="chooseColor"
+                    onChange={(e) => setColor(e.target.value)} />
 
-            <button 
-                type="button" 
-                onClick={() => {
-                    if(cat.length > 0 && color.length > 0) { 
-                        dispatchCat({type: "addCat", text: cat, color: color});
-                        setCat("");
-                        setColor("#FF6767")
-                    }
+                <button 
+                    type="button" 
+                    onClick={() => {
+                        if(cat.length > 0 && color.length > 0) { 
+                            dispatchCat({type: "addCat", text: cat, color: color});
+                            setCat("");
+                            setColor("#FF6767")
+                        }
                 }} > <p>+</p> </button>
+            </div>
+            
         </div>
     );
 }

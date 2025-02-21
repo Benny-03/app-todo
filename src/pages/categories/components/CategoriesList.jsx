@@ -17,7 +17,7 @@ export const CategoriesList = () => {
                             {cat.title}
                         </div>
                         <div className="buttons-edit">
-                            <EditCat id={cat.id} color={cat.color}/>
+                            <EditCat id={cat.id} color={cat.color} text={cat.title}/>
                             <RemoveCat id={cat.id} />
                         </div>
                     </li>

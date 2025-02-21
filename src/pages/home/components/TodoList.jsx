@@ -39,7 +39,7 @@ export const TodoList = () => {
                             />
                             {task.title}
                             {task.category && category &&
-                                <div className="color-cat" style={{ backgroundColor: category.find((c) => c.title === task.category)?.color }}>{task.category}</div>
+                                <div className="color-cat" style={{ backgroundColor: category.find((c) => c.title === task.category)?.color }}></div>
                             }
                         </div>
                         <div className="buttons-edit">
