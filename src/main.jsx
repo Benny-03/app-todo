@@ -1,7 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { Provider } from './state';
+import { store } from './state';
+import { Provider } from 'react-redux';
 import Home from './pages/home/Home';
 import TaskCategories from './pages/categories/TaskCategories';
 
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-    <Provider> 
-       <RouterProvider router={router} />
+    <Provider store={store}>
+        <RouterProvider router={router} />
     </Provider>
+    
 );

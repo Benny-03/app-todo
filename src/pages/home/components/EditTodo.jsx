@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useStore } from "../../../state";
+import { useSelector, useDispatch } from "react-redux";
 
 export const EditTodo = (props) => {
     const [task, setTask] = useState(props.text)
     const [isVisible, setIsVisible] = useState()
     const [cat, setCat] = useState(props.cat)
-    const { dispatch, category } = useStore();
+
+    const dispatch = useDispatch()
+    const category = useSelector((state) => state.category)
 
     return (
         <div className="edit-todo"> 

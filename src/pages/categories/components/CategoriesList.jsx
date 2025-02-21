@@ -1,10 +1,10 @@
 import React from "react";
-import { useStore } from "../../../state";
 import { EditCat } from "./EditCat";
 import { RemoveCat } from "./RemoveCat";
+import { useSelector} from "react-redux";
 
 export const CategoriesList = () => {
-    const { category } = useStore()
+    const category = useSelector((state) => state.category)
 
     return (
         <div className="categories-list">

@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
-import { useStore } from "../../../state";
+import React from "react";
 import { RemoveTodo } from "./RemoveTodo";
 import { EditTodo } from "./EditTodo"
 
+import { useSelector, useDispatch } from "react-redux";
+
 export const TodoList = () => {
-    const { tasks, taskNotCompleted, dispatchNotCompleted, category } = useStore();
+    const dispatch = useDispatch()
+    const tasks = useSelector((state) => state.tasks)
+    const category = useSelector((state) => state.category)
+    const tasksNotCompleted = useSelector((state) => state.tasksNotCompleted)
 
     const checkboxChange = (taskId) => {
         tasks.forEach((task) => {
@@ -12,18 +16,16 @@ export const TodoList = () => {
                 task.completed = !task.completed;
             }
         });
-        dispatchNotCompleted({ type: "completed", tasks: tasks })
+        dispatch({ type: "completed" })
     };
 
-    useEffect(() => {
-        dispatchNotCompleted({ type: "completed", tasks: tasks });
-    }, [tasks, dispatchNotCompleted]);
+    dispatch({ type: "completed"})
 
     return (
         <div className="todo-list">
             <div className="title">
                 <h3>My tasks</h3>
-                <p>not completed: {taskNotCompleted}</p>
+                <p>not completed: {tasksNotCompleted}</p>
             </div>
             <ul>
                 {tasks.map((task) => (

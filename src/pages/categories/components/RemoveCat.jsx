@@ -1,13 +1,13 @@
 import React from "react";
-import { useStore } from "../../../state";
+import { useDispatch } from "react-redux";
 
 export const RemoveCat = (props) => {
-    const { dispatchCat } = useStore();
+    const dispatch = useDispatch()
 
     return (
         <div className="remove-todo"> 
             <button onClick={() => {
-                dispatchCat({type: "deleteCat", id: props.id})
+                dispatch({type: "deleteCat", id: props.id})
             }}>
                 <img src="./src/images/delete-white.svg" />
             </button>

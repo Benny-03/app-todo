@@ -1,10 +1,11 @@
-import React, { use, useState } from "react";
-import { useStore } from "../../../state";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export const AddCategories = () => {
     const [cat, setCat] = useState("");
     const [color, setColor] = useState("#FF6767")
-    const { dispatchCat } = useStore();
+
+    const dispatch = useDispatch()
 
     return (
         <div className="box-insert-todo">
@@ -16,7 +17,7 @@ export const AddCategories = () => {
                 onChange={(e) => setCat(e.target.value)} 
                 onKeyDown={(e) => {
                     if (e.key === "Enter" && cat.length > 0 && color.length > 0) {
-                        dispatchCat({type: "addCat", text: cat, color: color});
+                        dispatch({type: "addCat", text: cat, color: color});
                         setCat("");
                         setColor("#FF6767")
                     }
@@ -33,7 +34,7 @@ export const AddCategories = () => {
                     type="button" 
                     onClick={() => {
                         if(cat.length > 0 && color.length > 0) { 
-                            dispatchCat({type: "addCat", text: cat, color: color});
+                            dispatch({type: "addCat", text: cat, color: color});
                             setCat("");
                             setColor("#FF6767")
                         }

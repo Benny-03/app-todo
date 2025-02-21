@@ -1,142 +1,102 @@
-import React, { createContext, useContext, useReducer } from "react";
+import { createStore } from "redux";
 
-const initialTasks =  [{
-    id: Math.random().toString(36).slice(2),
-    title: "Wash the dishes",
-    completed: false,
-    category: "Home"
-}, {
-    id: Math.random().toString(36).slice(2),
-    title: "Study",
-    completed: false,
-    category: "University"
-}, {
-    id: Math.random().toString(36).slice(2),
-    title: "Take the dog out",
-    completed: false,
-    category: "Dog"
-}];
+const initialState = {
+    tasks: [{
+        id: Math.random().toString(36).slice(2),
+        title: "Wash the dishes",
+        completed: false,
+        category: "Home"
+    }, {
+        id: Math.random().toString(36).slice(2),
+        title: "Study",
+        completed: false,
+        category: "University"
+    }, {
+        id: Math.random().toString(36).slice(2),
+        title: "Take the dog out",
+        completed: false,
+        category: "Dog"
+    }],
+    category: [{
+        id: Math.random().toString(36).slice(2),
+        title: "Home",
+        color: "#FF6767",
+    }, {
+        id: Math.random().toString(36).slice(2),
+        title: "University",
+        color: "#3ABEFF",
+    }, {
+        id: Math.random().toString(36).slice(2),
+        title: "Dog",
+        color: "green",
+    }],
+    tasksNotCompleted: 3
+}
 
-const initialCategories =  [{
-    id: Math.random().toString(36).slice(2),
-    title: "Home",
-    color: "#FF6767",
-}, {
-    id: Math.random().toString(36).slice(2),
-    title: "University",
-    color: "#3ABEFF",
-}, {
-    id: Math.random().toString(36).slice(2),
-    title: "Dog",
-    color: "green",
-}];
-
-const reducerTask = (tasks, action) => {
-    switch (action.type){
-        case "addTask": 
-            return [...tasks, {
-                id: Math.random().toString(36).slice(2),
-                title: action.text,
-                completed: false,
-                category: action.category
-            }];
+const rootReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "addTask":
+            return {
+                ...state,
+                tasks: [
+                    ...state.tasks,
+                    {
+                        id: Math.random().toString(36).slice(2),
+                        title: action.text,
+                        completed: false,
+                        category: action.category
+                    }
+                ]
+            };
         case "deleteTask":
-            const newTask = []
-            tasks.forEach((task) => {
-                if(task.id !== action.id){
-                    newTask.push(task);
-                }
-            })
-            return newTask;
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== action.id)
+            };
         case "editTask":
-            const editTask = [];
-            tasks.forEach((task) => {
-                if(task.id === action.id) { 
-                    task.title = action.text 
-                    task.category = action.category
-                } 
-                editTask.push(task);
-            })
-            return editTask;
-        default:
-            return tasks;
-    }
-}
-
-const reducerCat = (cat, action) => {
-    switch(action.type) {
+            return {
+                ...state,
+                tasks: state.tasks.map(task =>
+                    task.id === action.id
+                        ? { ...task, title: action.text, category: action.category }
+                        : task
+                )
+            };
         case "addCat":
-            return [...cat, {
-                id: Math.random().toString(36).slice(2),
-                title: action.text,
-                color: action.color
-            }];
+            return {
+                ...state,
+                category: [
+                    ...state.category,
+                    {
+                        id: Math.random().toString(36).slice(2),
+                        title: action.text,
+                        color: action.color
+                    }
+                ]
+            };
         case "editCat":
-            const editCat = [];
-            cat.forEach((c) => {
-                if(c.id === action.id) { 
-                    c.title = action.text
-                    c.color = action.color
-                } 
-                editCat.push(c);
-            })
-            return editCat;
+            return {
+                ...state,
+                category: state.category.map(c =>
+                    c.id === action.id
+                        ? { ...c, title: action.text, color: action.color }
+                        : c
+                )
+            };
         case "deleteCat":
-            const newCat = []
-            cat.forEach((c) => {
-                if(c.id !== action.id){
-                    newCat.push(c);
-                }
-            })
-            return newCat;
-        default:
-            return cat;
-    }
-}
-
-const reducerNotCompleted = (taskNotCompleted ,action) => {
-    switch(action.type){
+            return {
+                ...state,
+                category: state.category.filter(c => c.id !== action.id)
+            };
         case "completed":
-            let notComp = 0;
-            action.tasks.forEach((task) => {
-                if(task.completed == false){
-                    notComp += 1;
-                }
-            })
-            return notComp;
+            return {
+                ...state,
+                tasksNotCompleted: state.tasks.filter(task => !task.completed).length
+            };
         default:
-            return action.tasks.lenght;
+            return state;
     }
-}
+};
 
-export const StoreContext = createContext({ 
-    tasks: initialTasks, 
-    dispatch: () => {},
-    category: initialCategories,
-    dispatchCat: () => {},
-    taskNotCompleted: 0,
-    dispatchNotCompleted: () => {}
-});
 
-const combineDispatchers = (...dispatchers) => (action) => dispatchers.forEach((dispatch) => dispatch())
-
-export const Provider = ({ children }) => {
-    const [tasks, dispatch] = useReducer(reducerTask, initialTasks);
-    const [category, dispatchCat] = useReducer(reducerCat, initialCategories);
-    const [taskNotCompleted, dispatchNotCompleted] = useReducer(reducerNotCompleted, tasks.length)
-
-    return (
-        <StoreContext.Provider value={{
-            tasks, 
-            dispatch,
-            category,
-            dispatchCat,
-            taskNotCompleted,
-            dispatchNotCompleted
-        }}>
-            {children}
-        </StoreContext.Provider>
-    )
-}
-
-export const useStore = () => useContext(StoreContext);
+export const store = createStore(rootReducer);

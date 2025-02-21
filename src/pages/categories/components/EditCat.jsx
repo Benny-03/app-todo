@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { useStore } from "../../../state";
+import { useDispatch } from "react-redux";
 
 export const EditCat = (props) => {
     const [cat, setCat] = useState(props.text)
     const [color, setColor] = useState(props.color)
     const [isVisible, setIsVisible] = useState()
-    const { dispatchCat } = useStore();
+
+    const dispatch = useDispatch()
+
 
     return (
         <div className="edit-todo"> 
@@ -20,7 +22,7 @@ export const EditCat = (props) => {
                         onChange={(e) => setCat(e.target.value)} 
                         onKeyDown={(e) => {
                             if (e.key === "Enter" && cat.length > 0 || e.key === "Enter" && color.length > 0) {
-                                dispatchCat({type: "editCat", text: cat, id: props.id, color: color});
+                                dispatch({type: "editCat", text: cat, id: props.id, color: color});
                                 setCat(cat);
                                 setColor(color)
                                 setIsVisible(!isVisible)
@@ -43,7 +45,7 @@ export const EditCat = (props) => {
                             className="btn-editCat"
                             onClick={() => {
                                 if(cat.length > 0 || color.length > 0) { 
-                                    dispatchCat({type: "editCat", text: cat, id: props.id, color: color});
+                                    dispatch({type: "editCat", text: cat, id: props.id, color: color});
                                     setCat(cat);
                                     setColor(color)
                                 }

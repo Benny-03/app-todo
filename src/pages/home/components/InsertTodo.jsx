@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useStore } from "../../../state";
+import { useSelector, useDispatch } from "react-redux";
 
 export const InsertTodo = () => {
+    const dispatch = useDispatch()
+    const category = useSelector((state) => state.category)
+
     const [task, setTask] = useState("");
-    const { category, dispatch } = useStore();
     const [cat, setCat] = useState((category.length !== 0)? category[0].title : '')
 
     return (

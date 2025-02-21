@@ -1,15 +1,13 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Sidebar from "../../Sidebar";
 import { InsertTodo } from "./components/InsertTodo";
 import { TodoList } from "./components/TodoList";
-import { useStore } from "../../state";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
-    const { tasks, dispatchNotCompleted } = useStore();
-
-    useEffect(() => {
-        dispatchNotCompleted({ type: "completed", tasks: tasks })
-    }, [tasks, dispatchNotCompleted]);
+    const dispatch = useDispatch()
+    
+    dispatch({ type: "completed"})
 
     return (
         <div className="home-page">

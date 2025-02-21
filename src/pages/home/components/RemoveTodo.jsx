@@ -1,8 +1,8 @@
-import React from "react";
-import { useStore } from "../../../state";
+import React from "react"
+import { useDispatch } from "react-redux"
 
 export const RemoveTodo = (props) => {
-    const { dispatch } = useStore();
+    const dispatch = useDispatch()
 
     return (
         <div className="remove-todo"> 
