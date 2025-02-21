@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "../../Sidebar";
 import { CategoriesList } from "./components/CategoriesList";
 import { AddCategories } from "./components/AddCategories";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 
 export const InsertTodo = () => {
     const [task, setTask] = useState("");

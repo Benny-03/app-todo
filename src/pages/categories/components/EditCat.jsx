@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 
 export const EditCat = (props) => {
     const [cat, setCat] = useState()

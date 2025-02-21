@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 
 export const AddCategories = () => {
     const [cat, setCat] = useState("");

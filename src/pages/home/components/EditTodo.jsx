@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 
 export const EditTodo = (props) => {
     const [task, setTask] = useState(props.text)

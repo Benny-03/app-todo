@@ -1,5 +1,5 @@
 import React from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 import { EditCat } from "./EditCat";
 import { RemoveCat } from "./RemoveCat";
 
