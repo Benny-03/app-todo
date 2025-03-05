@@ -10,11 +10,11 @@ const root = createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/app-todo/",
         Component: Home
     },
     {
-        path: "/task-categories",
+        path: "/app-todo/task-categories",
         Component: TaskCategories
     }
 ]);

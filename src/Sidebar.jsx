@@ -5,10 +5,10 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar-content">
-                <NavLink to={'/'} className="page">
+                <NavLink to={'/app-todo'} className="page">
                     <p>My Task</p>
                 </NavLink>
-                <NavLink to={'/task-categories'} className="page">
+                <NavLink to={'/app-todo/task-categories'} className="page">
                     <p>Task Categories</p>
                 </NavLink>
             </div>
