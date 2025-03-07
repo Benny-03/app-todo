@@ -1,4 +1,5 @@
 import React from "react";
+import imgUrl from '../../../images/Edit.svg'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -58,7 +59,7 @@ export const EditCat = (props) => {
             </div>
             
             <button onClick={() => setIsVisible(!isVisible)}>
-                <img src="./src/images/Edit.svg" />
+                <img src={imgUrl} />
             </button>
         </div>
     )

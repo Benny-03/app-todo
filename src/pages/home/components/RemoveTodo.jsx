@@ -1,4 +1,5 @@
 import React from "react"
+import imgUrl from '../../../images/delete-white.svg'
 import { useDispatch } from "react-redux"
 
 export const RemoveTodo = (props) => {
@@ -9,7 +10,7 @@ export const RemoveTodo = (props) => {
             <button onClick={() => {
                 dispatch({type: "deleteTask", id: props.id})
             }}>
-                <img src="./src/images/delete-white.svg" />
+                <img src={imgUrl} />
             </button>
         </div>
     )

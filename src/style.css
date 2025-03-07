@@ -102,12 +102,6 @@ option:hover {
     color: var(--red);
 }
 
-.site-content .page.active {
-    background-color: white;
-    color: var(--red);
-}
-
-
 /* HOME-PAGE */
 
 .header {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import imgUrl from '../../../images/Edit.svg'
 import { useSelector, useDispatch } from "react-redux";
 
 export const EditTodo = (props) => {
@@ -66,7 +67,7 @@ export const EditTodo = (props) => {
             </div>
             
             <button onClick={() => setIsVisible(!isVisible)}>
-                <img src="./src/images/Edit.svg" />
+                <img src={imgUrl} />
             </button>
         </div>
     )
